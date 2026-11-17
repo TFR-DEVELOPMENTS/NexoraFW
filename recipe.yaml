@@ -48,9 +48,8 @@ tasks:
     dest: ./resources/[standalone]/bob74_ipl
 
   - action: download_github
-    src: https://github.com/TFR-DEVELOPMENTS/nexoro-framework
+    src: https://github.com/TFR-DEVELOPMENTS/NexoraFW
     ref: main
-    subpath: resources/[nexoro]
     dest: ./resources/[nexoro]
 
   - action: write_file
