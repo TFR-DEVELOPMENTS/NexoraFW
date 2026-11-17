@@ -32,23 +32,23 @@ variables:
 
 tasks:
   - action: download_github
-    src: citizenfx/cfx-server-data
+    src: https://github.com/citizenfx/cfx-server-data
     ref: master
     subpath: resources
     dest: ./resources/[cfx-default]
 
   - action: download_github
-    src: overextended/oxmysql
+    src: https://github.com/overextended/oxmysql
     ref: main
     dest: ./resources/[standalone]/oxmysql
 
   - action: download_github
-    src: Bob74/bob74_ipl
+    src: https://github.com/Bob74/bob74_ipl
     ref: master
     dest: ./resources/[standalone]/bob74_ipl
 
   - action: download_github
-    src: YOUR_GITHUB_USERNAME/nexoro-framework
+    src: https://github.com/YOUR_GITHUB_USERNAME/nexoro-framework
     ref: main
     subpath: resources/[nexoro]
     dest: ./resources/[nexoro]
@@ -63,7 +63,7 @@ tasks:
       sv_hostname "{{ serverName }}"
       sv_licenseKey "{{ licenseKey }}"
       set onesync on
-      set mysql_connection_string "mysql://{{ dbUser }}:{{ dbPassword }}@{{ dbHost }}:{{ dbPort }}/{{ dbName }}?charset=utf8mb4"
+      set mysql_connection_string "mysql://{{ dbUser }}}:{{ dbPassword }}@{{ dbHost }}:{{ dbPort }}/{{ dbName }}?charset=utf8mb4"
       set sv_enforceGameBuild 3095
 
       # Owner: the licence below is made owner on join
@@ -138,5 +138,5 @@ tasks:
       ensure nexoro_stations
       ensure nexoro_britain
       ensure nexoro_civilian
-      ensure nexpress_devtools
+      ensure nexoro_devtools
       ensure nexoro_admin
