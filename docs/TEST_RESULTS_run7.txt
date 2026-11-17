@@ -1,0 +1,49 @@
+
+== Migrations
+  ok   migrations apply on a fresh database
+  ok   staff assignment table exists
+
+== First player becomes owner
+  ok   the first account to join is made owner automatically
+  ok   recorded as a first-join assignment
+  ok   a later joiner is not given owner
+  ok   exactly one owner is ever created by the first-join rule
+  ok   the first owner has every admin permission
+  ok   other players do not
+  ok   claiming again does nothing
+
+== Death: bleed-out timing
+  ok   paramedic clocks on
+  ok   paramedic is on duty
+  ok   a living player cannot report going down
+  ok   downed players are recorded with a 300 second bleed-out
+  ok   the bleed-out starts on the server clock
+  ok   reporting twice does not restart the timer
+  ok   cannot give up at 100 seconds
+  ok   can respawn once 300 seconds have passed
+  ok   a second respawn with no bleed-out is refused
+  ok   state is cleared after respawn
+
+== Death: clothes and character are kept
+  ok   the same character is still loaded while down
+  ok   appearance and clothing are still stored
+  ok   bleed-out is measured from the moment of going down
+  ok   a player revived in the meantime cannot respawn from the timer
+  ok   report again for a new downing
+
+== Death: emergency revive ends the bleed-out
+  ok   a paramedic revives the downed player
+  ok   revive clears the downed state on the server
+  ok   a revived player cannot use the bleed-out path afterwards
+  ok   the revive is recorded in the medical record
+
+== Death: configuration
+  ok   bleed-out is 300 seconds
+  ok   at least one hospital to respawn at
+  ok   report endpoint answers for everyone with a character
+
+== Identity: traveller option
+  ok   the character creator offers Gypsy, Roma or Traveller
+  ok   Other stays the last option
+
+33 passed, 0 failed

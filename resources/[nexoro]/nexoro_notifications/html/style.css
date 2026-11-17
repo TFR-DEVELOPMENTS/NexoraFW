@@ -1,0 +1,14 @@
+:root { --bg:#0F0F0F; --bg2:#181818; --accent:#FFCC00; --text:#fff; --muted:#AAA; font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif; }
+html,body { margin:0; background:transparent; overflow:hidden; height:100%; }
+#stack { position:fixed; top:50%; right:24px; transform:translateY(-50%); width:340px; display:flex; flex-direction:column; gap:10px; }
+.n { background:linear-gradient(180deg,var(--bg),var(--bg2)); color:var(--text); border:1px solid rgba(255,204,0,.5); border-left:4px solid var(--c,#FFCC00); border-radius:12px; padding:12px 14px; animation:in .22s ease-out; }
+.n.out { animation:out .22s ease-in forwards; }
+.n .t { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--c,#FFCC00); margin-bottom:3px; }
+.n .m { font-size:14px; line-height:1.4; }
+.success { --c:#4ade80; } .error { --c:#ff5a4d; } .warning { --c:#FFCC00; } .info { --c:#60a5fa; }
+.emergency { --c:#3b82f6; } .job { --c:#c084fc; } .banking { --c:#34d399; } .inventory { --c:#fb923c; } .staff { --c:#f472b6; }
+.emergency { animation:in .22s ease-out, pulse 1.2s ease-in-out infinite; }
+@keyframes in { from { transform:translateX(30px); opacity:0 } to { transform:none; opacity:1 } }
+@keyframes out { to { transform:translateX(30px); opacity:0 } }
+@keyframes pulse { 50% { box-shadow:0 0 14px rgba(59,130,246,.7) } }
+@media (prefers-reduced-motion:reduce) { .n, .n.out { animation:none } }

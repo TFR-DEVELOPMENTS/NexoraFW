@@ -1,0 +1,13 @@
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>Nexoro Chat</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div id="chat">
+  <div id="log" role="log" aria-live="polite"></div>
+  <form id="input" class="hidden" autocomplete="off">
+    <select id="channel" aria-label="Channel">
+      <option value="local">Local</option><option value="global">OOC</option><option value="me">/me</option><option value="do">/do</option>
+      <option value="department">Department</option><option value="emergency">999 Services</option><option value="staff">Staff</option>
+    </select>
+    <input id="text" type="text" maxlength="240" placeholder="Type a message. Commands: /ooc /me /do /pm id message" autocomplete="off">
+  </form>
+</div>
+<script src="app.js"></script></body></html>

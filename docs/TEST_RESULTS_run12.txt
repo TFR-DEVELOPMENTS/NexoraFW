@@ -1,0 +1,82 @@
+
+== Migrations
+  ok   migrations apply
+  ok   table exists: nexoro_auctions
+  ok   table exists: nexoro_farm_plots
+
+== Public transport
+  ok   you must tap on at the stop
+  ok   unknown routes are refused
+  ok   unknown stops are refused
+  ok   Pat taps on at High Street
+  ok   you cannot tap on twice
+  ok   you cannot tap off where you got on
+  ok   Pat taps off at the harbour
+  ok   the fare follows the road distance between the stops
+  ok   the trip is finished
+  ok   with no money the fare is refused
+  ok   and Pat stays on the bus until he can pay
+  ok   once paid, Pat gets off
+
+== Pawn shop
+  ok   the pawn shop is visited on foot
+  ok   the pawn shop only takes what it prices
+  ok   you cannot sell what you do not have
+  ok   amounts must be at least one
+  ok   two radios sell for £40.00
+  ok   the cash is paid out
+  ok   the radios are gone
+
+== Auction house
+  ok   auctions run 5 to 120 minutes
+  ok   Olly lists a repair kit at £100
+  ok   the item is held by the auction house
+  ok   you cannot bid on your own item
+  ok   the first bid must meet the starting price
+  ok   Cara bids £100
+  ok   Cara's bid is taken from her bank
+  ok   a bid must beat the current one by the minimum step
+  ok   Lou bids £105
+  ok   Lou pays his bid
+  ok   Cara is refunded the moment she is outbid
+  ok   the auction sells when its time is up
+  ok   the seller receives £105 less the 5% house fee (£99.75)
+  ok   the losing bidder cannot claim the item
+  ok   the winner claims the repair kit
+  ok   the item is in the winner's inventory
+  ok   an item can only be claimed once
+  ok   nothing is left active
+  ok   an auction with no bids goes unsold
+  ok   the buyer cannot claim an unsold item
+  ok   the seller takes back an unsold item
+  ok   closed auctions cannot be bid on
+
+== Robberies
+  ok   a lockpick is needed
+  ok   you must be at the ATM
+  ok   the robbery can start, taking 20 seconds
+  ok   the ATM gives up its smallest amount (£300)
+  ok   the cash is in Lou's pocket
+  ok   one lockpick was used up
+  ok   the robbery raises an alarm
+  ok   the alarm becomes an immediate police incident in dispatch
+  ok   the same ATM cannot be robbed again straight away
+  ok   after two hours the ATM is ready again
+
+== Farming
+  ok   planting needs a wheat seed
+  ok   Olly plants a seed; it is ready in 10 minutes
+  ok   one seed used
+  ok   a plot can only hold one crop
+  ok   a refused planting gives the seed back
+  ok   the crop is not ready yet
+  ok   the crop is harvested when ready (2 wheat at the bottom of the range)
+  ok   the wheat is in the inventory
+  ok   the plot is empty again
+  ok   nothing to harvest on an empty plot
+  ok   only the planter can harvest a plot
+  ok   the planter harvests their own plot
+  ok   a full inventory refuses the harvest
+  ok   and the crop stays in the ground for later
+
+68 passed, 0 failed

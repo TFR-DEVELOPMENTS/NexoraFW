@@ -1,0 +1,26 @@
+:root { --bg:#0F0F0F; --bg2:#181818; --accent:#FFCC00; --text:#fff; --muted:#AAA; --border:rgba(255,204,0,.5); font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif; }
+* { box-sizing:border-box; }
+html,body { margin:0; height:100%; background:transparent; color:var(--text); overflow:hidden; }
+.hidden { display:none !important; }
+#inv { position:fixed; right:40px; top:50%; transform:translateY(-50%); width:560px; background:linear-gradient(180deg,var(--bg),var(--bg2)); border:1px solid var(--border); border-radius:14px; padding:20px; }
+header { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; }
+.logo { color:var(--accent); font-weight:800; letter-spacing:3px; font-size:20px; }
+.muted { color:var(--muted); font-size:13px; }
+.bar { height:6px; background:#222; border-radius:6px; overflow:hidden; margin-bottom:12px; }
+#bar-fill { height:100%; width:0; background:var(--accent); transition:width .2s; }
+#search { width:100%; background:var(--bg); border:1px solid rgba(255,255,255,.12); border-radius:10px; padding:9px 12px; color:var(--text); margin-bottom:12px; }
+#search:focus-visible { outline:2px solid var(--accent); }
+#grid { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; max-height:60vh; overflow-y:auto; padding-right:4px; }
+.slot { position:relative; aspect-ratio:1; background:var(--bg); border:1px solid rgba(255,255,255,.08); border-radius:10px; display:flex; align-items:center; justify-content:center; user-select:none; transition:border-color .12s; }
+.slot.over { border-color:var(--accent); }
+.slot.dim { opacity:.25; }
+.slot .num { position:absolute; left:6px; top:4px; font-size:10px; color:var(--muted); }
+.slot .amt { position:absolute; right:6px; bottom:4px; font-size:12px; font-weight:700; }
+.slot .name { position:absolute; left:4px; right:4px; bottom:4px; font-size:10px; text-align:center; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.tile { width:56%; aspect-ratio:1; border-radius:10px; background:rgba(255,204,0,.12); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:800; font-size:18px; overflow:hidden; }
+.tile img { width:100%; height:100%; object-fit:contain; }
+.slot[draggable=true] { cursor:grab; }
+.hint { margin:12px 0 0; line-height:1.5; }
+#msg { margin:8px 0 0; padding:8px 12px; border:1px solid #ff5a4d; background:#2a1411; border-radius:8px; font-size:13px; }
+#tip { position:fixed; pointer-events:none; max-width:240px; background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:13px; line-height:1.4; z-index:5; }
+#tip b { color:var(--accent); }

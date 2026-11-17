@@ -1,0 +1,44 @@
+
+== Migrations
+  ok   migrations apply
+  ok   theft table exists
+
+== Vehicle theft
+  ok   you must be next to the car
+  ok   an unknown vehicle cannot be taken
+  ok   a lockpick is needed
+  ok   you cannot steal your own car
+  ok   and a refused theft uses no lockpick
+  ok   only a car out on the street can be taken
+  ok   a successful theft takes the car
+  ok   one lockpick is used up
+  ok   the theft is recorded
+  ok   the theft raises an alarm to dispatch
+  ok   the same car cannot be taken again straight away
+  ok   a failed attempt is reported
+  ok   a failed attempt leaves no theft record
+  ok   only police can recover a stolen car
+  ok   an officer on duty recovers it
+  ok   and it is marked recovered
+
+== House robbery
+  ok   you must be at the door
+  ok   a lockpick is needed to break in
+  ok   nothing is taken while the owner is home
+  ok   with the owner away, the stash is taken
+  ok   the goods are in the thief's inventory
+  ok   the stash is empty now
+  ok   a house cannot be robbed again straight away
+  ok   an empty stash has nothing to take
+
+== Fence
+  ok   the fence is found in person
+  ok   the fence only buys what it wants
+  ok   two cash bags sell for 40% of £300 each (£240)
+  ok   the cash is paid out
+  ok   the fence stops buying at the daily cap of £1,500 (£240 + £1,320 would be over)
+  ok   a suspicious sale can raise an alarm
+  ok   the fence sells a lockpick for £150
+  ok   the fence sells only what it lists
+
+34 passed, 0 failed

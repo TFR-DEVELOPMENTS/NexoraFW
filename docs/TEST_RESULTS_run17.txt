@@ -1,0 +1,55 @@
+
+== Migrations
+  ok   migrations apply
+
+== Dev mode is off by default
+  ok   dev commands do nothing unless dev mode is on
+  ok   no reset token is made when dev mode is off
+  ok   giving money is refused when dev mode is off
+
+== Who may use the dev tools
+  ok   the owner may use them in dev mode
+  ok   a civilian may not
+  ok   the console is not a player
+  ok   a civilian cannot give themselves money
+
+== Quick test setup
+  ok   owner adds £500 cash
+  ok   the cash arrives
+  ok   huge amounts are refused
+  ok   zero is refused
+  ok   owner adds three lockpicks
+  ok   too many items at once are refused
+  ok   unknown kinds are refused
+
+== Teleport and heal
+  ok   unknown locations are refused
+  ok   owner teleports to Legion Square
+  ok   the teleport is sent to the owner
+  ok   a civilian cannot teleport
+  ok   owner heals
+
+== Self-check
+  ok   a healthy server passes every check
+  ok   one check per core table, plus ping, owner and resources
+  ok   a missing table is reported, pointing at the migrations
+  ok   no owner is reported with the way to fix it
+  ok   a stopped Nexoro resource is named (other resources are ignored)
+  ok   an unreachable database is reported
+
+== Database reset
+  ok   the reset is console only
+  ok   the reset needs the token printed at startup
+  ok   a nine digit token is printed at startup in dev mode
+  ok   a wrong token is refused
+  ok   the right token drops every Nexoro table
+  ok   foreign key checks are turned off for the drop and back on after
+  ok   the token works once
+  ok   a new token is made for the next reset
+  ok   the reset is refused when dev mode is off
+
+== Job switching for tests
+  ok   a civilian cannot switch jobs
+  ok   the owner can switch to a job for testing
+
+37 passed, 0 failed

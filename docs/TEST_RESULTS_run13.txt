@@ -1,0 +1,54 @@
+
+== Migrations
+  ok   migrations apply
+  ok   table exists: nexoro_gambling_daily
+  ok   table exists: nexoro_lottery_draws
+  ok   table exists: nexoro_lottery_tickets
+
+== Daily gambling limit
+  ok   a character can stake £100 a day
+  ok   a £60 stake is reserved
+  ok   going over £100 in a day is refused
+  ok   a released stake is given back
+  ok   the whole day can be used up
+  ok   the limit resets the next day
+  ok   a stake must be positive
+
+== Scratchcards
+  ok   scratchcards are bought at the counter
+  ok   the published odds pay back about 97% (97.0%)
+  ok   the first prize band is a loser
+  ok   the card costs £5.00
+  ok   the top prize is £500
+  ok   the win less the stake is paid out in cash
+  ok   the 21st card of the day is refused
+  ok   the day is used up
+
+== Lottery: tickets
+  ok   tickets are bought at the counter
+  ok   a ticket needs six numbers
+  ok   numbers must be different
+  ok   numbers start at 1
+  ok   numbers stop at 49
+  ok   a valid ticket is bought
+  ok   a ticket costs £2.00
+  ok   half of each ticket goes into the pot
+  ok   at most ten tickets per person per draw
+
+== Lottery: draw and payouts
+  ok   the draw runs
+  ok   the draw is closed
+  ok   the winning numbers are recorded
+  ok   the 4-number winner gets 15% of the pot
+  ok   the 5-number winner gets 25% of the pot
+  ok   when every tier has a winner, nothing carries over
+  ok   the jackpot was won, so the carry is zero
+  ok   a draw cannot be run twice
+
+== Lottery: rollover when the jackpot is not won
+  ok   the current pot is shown to players
+  ok   the next draw runs
+  ok   rolled over money is kept, nothing is lost
+  ok   the jackpot grows when nobody wins it
+
+40 passed, 0 failed

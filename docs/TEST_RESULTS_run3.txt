@@ -1,0 +1,143 @@
+
+== Migrations including nexoro_phone
+  ok   six resources with migrations apply (database, banking, inventory, admin, phone, vehicles)
+  ok   table exists: nexoro_phones
+  ok   table exists: nexoro_phone_contacts
+  ok   table exists: nexoro_phone_messages
+  ok   table exists: nexoro_phone_calls
+  ok   table exists: nexoro_phone_emails
+  ok   table exists: nexoro_phone_adverts
+  ok   table exists: nexoro_phone_posts
+
+== Phone identity
+  ok   phone opens
+  ok   UK mobile number format 07xxxxxxxxx: 07510271661
+  ok   email is firstname.lastname@nexoro.co.uk
+  ok   social handle
+  ok   duplicate names get unique email and handle
+  ok   apostrophes stripped from email (cara.oneil)
+  ok   all four numbers are unique
+  ok   new phones start at 100% battery
+  ok   number persists across opens
+
+== Phone requirements: item and battery
+  ok   no phone item, no phone
+  ok   with a phone item it works
+  ok   dead battery blocks the phone
+  ok   charging works
+  ok   battery at 50% after charging
+  ok   battery capped at 100%
+
+== Contacts
+  ok   save contact
+  ok   saving the same number updates the name (no duplicate)
+  ok   contact rejected: 12345
+  ok   contact rejected: 07abcdefghi
+  ok   contact rejected: 07264181671
+  ok   contact rejected: 07510271661
+  ok   contact rejected: 07264181671
+  ok   contact rejected: non-table
+  ok   second contact
+  ok   another player cannot delete my contacts
+  ok   I can delete my own
+  ok   contact limit enforced
+
+== Messages
+  ok   send SMS
+  ok   online recipient gets a push with the sender number
+  ok   hostile text is accepted as plain text
+  ok   and nothing was injected
+  ok   send rejected: number_not_found
+  ok   send rejected: invalid_number
+  ok   send rejected: invalid_message
+  ok   send rejected: invalid_message
+  ok   send rejected: own_number
+  ok   recipient sees 1 conversation with 2 unread
+  ok   thread shows messages in order, mine=false
+  ok   opening the thread marks messages read
+  ok   sender view marks own messages
+  ok   a third party cannot read someone else's thread
+  ok   SMS spam is rate limited (6 blocked)
+
+== Calls
+  ok   call connects (ringing)
+  ok   callee is busy for a third caller
+  ok   busy reason reported
+  ok   caller cannot start a second call
+  ok   only the callee can answer
+  ok   caller cannot answer their own call
+  ok   callee answers
+  ok   caller hangs up
+  ok   both parties are told the call ended
+  ok   answered call logged
+  ok   cannot hang up when not in a call
+  ok   declined call logged
+  ok   unanswered calls are logged as missed
+  ok   cannot call yourself
+  ok   unknown number is unavailable
+  ok   999 raises the emergency-call event for dispatch
+  ok   101 and 111 also connect
+  ok   other short codes are not emergency numbers
+  ok   call log lists newest first with direction
+  ok   dropping mid-call ends it for the other player
+  ok   player 1 rejoins
+  ok   phone works again after rejoining
+  ok   rejoined player is reachable again
+
+== Email
+  ok   send email
+  ok   unknown address rejected
+  ok   invalid address rejected
+  ok   empty subject/body rejected
+  ok   recipient sees the email unread
+  ok   marked read
+  ok   someone else cannot delete my mail
+  ok   I can delete my own mail
+  ok   other inboxes stay private
+
+== Adverts
+  ok   post an advert
+  ok   £25 charged to the bank account
+  ok   advert cooldown enforced
+  ok   others see it with formatted £ price
+  ok   owner sees mine=true
+  ok   others cannot delete my advert
+  ok   negative price rejected
+  ok   empty title rejected
+  ok   cannot place an advert without funds
+  ok   balance untouched by failed purchase
+  ok   owner deletes advert
+
+== Chirp, settings and jobs
+  ok   post to Chirp
+  ok   empty post rejected
+  ok   feed shows the author handle chosen by the server
+  ok   cannot delete someone else's post
+  ok   author deletes own post
+  ok   settings saved
+  ok   unknown wallpaper/ringtone values are ignored
+  ok   jobs app lists open jobs with £ salaries, not unemployed
+  ok   Core.GetJobs returns grades
+
+== Cleanup
+  ok   deleting a character removes their phone
+  ok   message history is kept for the other party
+
+== HUD needs (hunger, thirst, stress)
+  ok   new characters start full and calm
+  ok   tick runs
+  ok   hunger -0.6 and thirst -0.9 per minute
+  ok   whole-number change is persisted as metadata
+  ok   client receives the new values
+  ok   set thirst to 0
+  ok   starvation damage event at 0 thirst
+  ok   needs never go below 0
+  ok   invalid values and keys rejected
+  ok   values are capped at 100
+  ok   stress capped at 100
+  ok   stress recovers over time
+  ok   items that change metadata (water) update the HUD state
+  ok   unrelated metadata ignored
+  ok   state cleared on unload
+
+119 passed, 0 failed

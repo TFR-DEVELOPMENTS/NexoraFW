@@ -1,0 +1,140 @@
+
+== Migrations: prison and housing tables
+  ok   migrations apply
+  ok   table exists: nexoro_prison_sentences
+  ok   table exists: nexoro_properties
+  ok   table exists: nexoro_property_keys
+  ok   Sam is on duty as a constable
+
+== Arrest leads to a sentence
+  ok   Sam cuffs Lou
+  ok   Sam arrests Lou with a two minute sentence
+  ok   the arrest raises nexoro:server:arrested for the prison resource
+  ok   a serving sentence is recorded for Lou
+  ok   Lou is taken to a cell
+  ok   cuffs come off on the way into prison
+  ok   two minutes left on the sentence
+
+== Prison time
+  ok   nobody serves two sentences at once
+  ok   a sentence must be at least a minute
+  ok   sentences are capped at two weeks
+  ok   nobody is released early
+  ok   after one minute the sentence still runs
+  ok   after the full sentence Lou is released
+  ok   the release point is sent to Lou
+  ok   the sentence is marked served
+  ok   Lou is no longer in prison
+  ok   nothing left to serve
+  ok   a served sentence is not released twice
+  ok   a sentence can be started again later
+  ok   no sentence for an unknown player
+
+== Property: buying and access
+  ok   unknown agents are refused
+  ok   the agent is only reachable on foot nearby
+  ok   the agent lists both properties as for sale
+  ok   unknown properties are refused
+  ok   Cara buys the flat
+  ok   the price is taken from the bank
+  ok   Cara is the owner
+  ok   it cannot be bought twice
+  ok   Olly cannot afford the house
+  ok   strangers cannot enter
+  ok   Cara gives Olly a key
+  ok   Olly with a key goes in at the door
+  ok   Olly still has a key, so he is refused for distance
+  ok   Cara takes the key back
+  ok   without a key there is no storage
+
+== Property: storage
+  ok   Cara stores a bag in the flat
+  ok   the bag left her inventory
+  ok   the stash holds the bag
+  ok   Cara takes it back out
+  ok   the bag is back in her inventory
+  ok   nothing more to take
+
+== Property: bills, arrears and repossession
+  ok   the weekly bill is paid from the bank
+  ok   the bill is £60.00
+  ok   a missed bill builds up arrears
+  ok   arrears show one week
+  ok   arrears must be cleared before selling
+  ok   Cara pays the arrears
+  ok   arrears are cleared
+  ok   after four missed weeks the flat is repossessed
+  ok   keys stop working with repossession
+
+== Property: selling back
+  ok   Cara buys the house
+  ok   sold back for 60% of £180,000
+  ok   the money arrives in the bank
+  ok   the house is for sale again
+  ok   the old owner cannot sell it twice
+
+== Taxi: fares measured on the server
+  ok   only a taxi driver on duty can offer fares
+  ok   passengers must be next to the driver
+  ok   Pat offers Olly a fare
+  ok   Olly receives the offer
+  ok   only the passenger can answer
+  ok   Olly accepts
+  ok   a fare cannot finish instantly
+  ok   the fare finishes once the journey time allows
+  ok   a 5 km straight line (about 3.9 miles by road) costs £10.19
+  ok   Olly pays exactly the fare
+  ok   Pat keeps 80% of it
+  ok   a fare can only be finished once
+  ok   a finished fare cannot be cancelled
+  ok   short trips pay the minimum fare
+  ok   a declined offer cannot be accepted later
+  ok   offers expire after 45 seconds
+  ok   the passenger must still be in the car at the end
+  ok   the driver can cancel a fare
+
+== Shops
+  ok   the convenience shop lists its goods
+  ok   unknown shops are refused
+  ok   shops must be visited on foot
+  ok   two waters cost £3.00 in cash
+  ok   the cash is taken
+  ok   the waters are in the inventory
+  ok   stock goes down by what was bought
+  ok   out of stock is refused
+  ok   items the shop does not sell are refused
+  ok   amounts must be at least one
+  ok   no money, no shopping
+  ok   shops only buy what they list for buying
+  ok   you cannot sell what you do not have
+  ok   selling one water to the shop pays £0.60
+  ok   and removes it from the inventory
+  ok   stock comes back over time (38 to 59)
+
+== Crafting
+  ok   a sandwich is not makeable without a cheese
+  ok   other recipes show what is missing
+  ok   crafting with missing ingredients fails
+  ok   and nothing is taken
+  ok   a sandwich is made from bread and cheese
+  ok   the sandwich is in the inventory
+  ok   the bread was used
+  ok   unknown recipes are refused
+  ok   crafting needs the workbench
+  ok   the inventory is now full
+  ok   a repair kit that will not fit is not made (too_heavy)
+  ok   the scrap is put back when the kit will not fit
+  ok   and so is the steel
+
+== Fines and courts
+  ok   an outstanding fine exists for Cara
+  ok   Cara sees her outstanding fine from anywhere
+  ok   paying in person needs the court office
+  ok   the same fine can be paid by phone
+  ok   the fine is marked paid
+  ok   a paid fine cannot be paid twice
+  ok   nobody can pay someone else's fine
+  ok   a fine you cannot pay stays outstanding
+  ok   and remains outstanding
+
+116 passed, 0 failed

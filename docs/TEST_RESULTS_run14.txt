@@ -1,0 +1,42 @@
+
+== Migrations
+  ok   migrations apply
+
+== Announcements
+  ok   nothing happens before the announcement window
+  ok   the 18:00 drop is announced five minutes ahead
+  ok   everyone is told, with the location
+  ok   the announcement is made once, not on every tick
+  ok   no repeat announcement is sent
+
+== Dropping the crate
+  ok   the crate drops at 18:00
+  ok   everyone gets the crate on their map
+  ok   one crate exists
+  ok   the 18:00 drop does not repeat
+  ok   and there is still one crate
+
+== Claiming the crate
+  ok   civilians cannot open a police crate
+  ok   the team member must be at the crate
+  ok   off duty does not count as the team
+  ok   a team member opens the crate and takes the smallest cash prize
+  ok   the cash is paid out
+  ok   the crate is gone once opened
+  ok   a crate can only be opened once
+
+== Item loot
+  ok   the 21:00 drop lands
+  ok   a roll past the cash band gives the next prize: a cash bag
+  ok   the cash bag is in the inventory
+
+== Expiry
+  ok   a crate is waiting
+  ok   crates nobody opened are removed after 15 minutes
+  ok   nothing is left on the map
+
+== Team setting
+  ok   a crate for everyone is dropped
+  ok   with no team set, anyone can open it
+
+26 passed, 0 failed

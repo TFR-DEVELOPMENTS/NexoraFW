@@ -1,0 +1,203 @@
+
+== Utilities (UK formatting and money maths)
+  ok   formats £1,250.00
+  ok   formats zero
+  ok   formats pence
+  ok   formats millions
+  ok   ToPence(12.5)
+  ok   ToPence handles float error
+  ok   ToPence rejects negatives
+  ok   ToPence rejects NaN
+  ok   ToPence rejects infinity
+  ok   ToPence rejects sub-penny amounts
+  ok   ToPence rejects strings
+  ok   wildcard matches child
+  ok   wildcard does not cross namespaces
+  ok   no partial-name match
+  ok   star matches all
+  ok   SanitizeText strips control characters
+  ok   SanitizeText limits length
+  ok   SanitizeText rejects invalid UTF-8
+
+== Identity validation
+  ok   accepts a valid character
+  ok   capitalises first name
+  ok   capitalises apostrophes and hyphens
+  ok   rejects one-letter name
+  ok   rejects digits in names
+  ok   blocks staff/service impersonation names
+  ok   rejects markup in names
+  ok   rejects under-18s
+  ok   rejects future dates
+  ok   rejects impossible dates
+  ok   rejects non-ISO date format
+  ok   rejects unknown gender value
+  ok   rejects unknown nationality
+  ok   rejects extreme height
+  ok   rejects NaN height
+  ok   rejects non-text biography
+  ok   accepts 29 February in a leap year
+  ok   generated citizen IDs are valid
+  ok   rejects confusable characters
+
+== Appearance validation
+  ok   accepts partial data and fills defaults
+  ok   clamps head blend to 45
+  ok   clamps mix to 1
+  ok   clamps face feature high
+  ok   clamps face feature low
+  ok   NaN face feature becomes 0
+  ok   always 20 face features
+  ok   clamps negative hair style
+  ok   clamps enormous drawable
+  ok   always 5 props
+  ok   rejects non-freemode models
+  ok   rejects non-table
+  ok   drops unknown keys
+
+== Database migrations (real MariaDB)
+  ok   migrations run cleanly
+  ok   applies each resource migration once (database, banking, inventory, admin, phone, vehicles)
+  ok   re-running applies nothing (idempotent)
+  ok   table exists: nexoro_players
+  ok   table exists: nexoro_player_identifiers
+  ok   table exists: nexoro_characters
+  ok   table exists: nexoro_character_appearance
+  ok   table exists: nexoro_character_outfits
+  ok   table exists: nexoro_player_metadata
+  ok   table exists: nexoro_jobs
+  ok   table exists: nexoro_job_grades
+  ok   table exists: nexoro_staff_assignments
+  ok   table exists: nexoro_logs
+  ok   table exists: nexoro_schema_migrations
+  ok   splitter drops comment-only chunks
+
+== Core: player registration
+  ok   default job loaded from database
+  ok   players registered
+  ok   IP addresses are never stored
+  ok   other identifiers stored
+  ok   same licence maps to the same player row
+  ok   no duplicate player rows
+
+== Core: permissions
+  ok   the first player to join is made owner
+  ok   later players have no staff permissions
+  ok   console always allowed
+  ok   console can assign owner
+  ok   owner has everything
+  ok   assign moderator
+  ok   moderator can kick
+  ok   moderator cannot give money
+  ok   moderator cannot edit inventories
+  ok   moderator cannot change jobs
+  ok   moderator cannot restart resources
+  ok   moderator cannot manage staff
+  ok   plain moderator has no temp-ban by default
+  ok   staff hierarchy: owner > moderator, not reverse
+  ok   staff cannot act on equal rank
+  ok   moderator can act on non-staff
+  ok   unknown rank rejected
+  ok   removing rank removes permissions
+
+== Core: jobs
+  ok   RegisterJob creates a job
+  ok   RegisterJob rejects bad names
+  ok   RegisterJob rejects negative salary
+  ok   salary stored in pence
+
+== Character flow through real callbacks
+  ok   list: empty with 3 slots
+  ok   create: first character
+  ok   create: invalid form returns field error
+  ok   create: invalid appearance rejected
+  ok   create: second character
+  ok   create: third character
+  ok   create: fourth character blocked by slot limit
+  ok   exactly 3 rows stored
+  ok   starting cash is £250.00 stored as pence
+  ok   list: shows 3 characters
+  ok   list: DOB displayed as DD/MM/YYYY
+  ok   list: appearance included
+  ok   select: cannot load another player's character
+  ok   delete: cannot delete another player's character
+  ok   victim character still exists
+  ok   select: own character loads
+  ok   loaded character has default job
+  ok   cash is £250.00
+  ok   bank is £1,500.00
+  ok   select: cannot load a second character while one is loaded
+  ok   list: blocked while in game
+
+== Money safety (real database, atomic updates)
+  ok   AddMoney £100
+  ok   database matches (£350.00)
+  ok   RemoveMoney £50.25
+  ok   database matches (£299.75)
+  ok   cannot spend more than you have
+  ok   balance unchanged after failed spend
+  ok   AddMoney rejects -5
+  ok   AddMoney rejects 0
+  ok   AddMoney rejects -nan
+  ok   AddMoney rejects inf
+  ok   AddMoney rejects 10
+  ok   AddMoney rejects 1.005
+  ok   account name cannot inject SQL
+  ok   unknown account rejected
+  ok   single transaction limit enforced
+  ok   no player, no money
+  ok   balance still correct after all abuse attempts
+  ok   balance cap prevents overflow
+  ok   bank never exceeds cap
+  ok   cache equals database
+  ok   repeated spending stops at zero (spent 2 x £100)
+
+== Jobs on a loaded character
+  ok   SetJob taxi grade 1
+  ok   job grade label correct
+  ok   salary reported in pounds
+  ok   unknown grade rejected
+  ok   unknown job rejected
+  ok   job persisted
+  ok   metadata saved
+  ok   metadata readable
+  ok   metadata key validated
+
+== Appearance and outfits
+  ok   save appearance
+  ok   save outfit
+  ok   duplicate outfit name rejected
+  ok   outfit name with markup rejected
+  ok   outfit limit of 20 enforced
+
+== Disconnect, save and recovery
+  ok   player removed on disconnect
+  ok   active character cleared on disconnect
+  ok   money persisted after disconnect (£99.75)
+  ok   character loads again after rejoin
+  ok   job persisted across sessions
+  ok   metadata persisted across sessions
+  ok   core restart: active character restored
+
+== Deleting characters
+  ok   delete needs the correct citizen ID
+  ok   delete with confirmation works
+  ok   appearance deleted with character (cascade)
+  ok   outfits deleted with character (cascade)
+  ok   metadata deleted with character (cascade)
+  ok   freed slot can be reused
+
+== Rate limiting and abuse handling
+  ok   callback spam is rate limited (50 blocked)
+  ok   persistent spammer is kicked
+  ok   unknown callback names are rejected
+  ok   malformed callback payload does not crash
+  ok   character-only callbacks refuse players without a character
+
+== Audit logging
+  ok   economy actions logged to database
+  ok   character creation logged
+  ok   permission changes logged
+  ok   security violations logged
+
+171 passed, 0 failed

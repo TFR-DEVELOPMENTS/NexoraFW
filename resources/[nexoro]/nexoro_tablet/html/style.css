@@ -1,0 +1,23 @@
+:root { --bg:#0F0F0F; --bg2:#181818; --accent:#FFCC00; --text:#fff; --muted:#AAA; --border:rgba(255,204,0,.5); --danger:#ff5a4d; font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif; }
+* { box-sizing:border-box; } html,body { margin:0; height:100%; background:transparent; color:var(--text); overflow:hidden; } .hidden { display:none !important; }
+button,input,select { font:inherit; color:inherit; }
+#tablet { position:fixed; inset:4vh 5vw; background:linear-gradient(180deg,var(--bg),var(--bg2)); border:2px solid #2b2b2b; border-radius:24px; display:flex; flex-direction:column; box-shadow:0 0 0 1px var(--border), 0 20px 60px rgba(0,0,0,.7); }
+header { display:flex; justify-content:space-between; align-items:center; padding:14px 22px; border-bottom:1px solid rgba(255,255,255,.08); } .logo { color:var(--accent); font-weight:800; letter-spacing:3px; }
+.layout { flex:1; display:grid; grid-template-columns:220px 1fr; min-height:0; }
+#apps { border-right:1px solid rgba(255,255,255,.08); padding:14px; display:flex; flex-direction:column; gap:6px; overflow-y:auto; }
+#apps button { text-align:left; background:transparent; border:1px solid transparent; border-radius:12px; padding:12px; cursor:pointer; color:var(--muted); font-weight:600; }
+#apps button.active { background:rgba(255,204,0,.12); border-color:var(--border); color:var(--text); }
+main { padding:20px 24px; overflow-y:auto; min-width:0; }
+h2 { margin:0 0 12px; font-size:20px; }
+#calls { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+#calls button, #form button { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:9px 14px; cursor:pointer; font-weight:600; }
+#calls button.active { background:var(--accent); color:#111; }
+#form { display:flex; flex-direction:column; gap:8px; max-width:520px; }
+#form label { font-size:12px; color:var(--muted); } #form input, #form select { background:var(--bg); border:1px solid rgba(255,255,255,.14); border-radius:10px; padding:9px 12px; width:100%; color-scheme:dark; }
+#form button.primary { background:var(--accent); color:#111; border-color:var(--accent); }
+#result { margin-top:16px; font-size:14px; }
+.row { border-top:1px solid rgba(255,255,255,.07); padding:9px 0; line-height:1.5; }
+.row small { color:var(--muted); display:block; }
+.empty { color:var(--muted); }
+#msg { position:fixed; left:50%; bottom:40px; transform:translateX(-50%); background:#2a1411; border:1px solid var(--danger); border-radius:10px; padding:10px 16px; }
+button:focus-visible,input:focus-visible,select:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }

@@ -1,0 +1,3 @@
+checked 54 resources, 114 client callbacks, 57 ensure lines
+0 problem(s)
+recipe and template match: 57 resources

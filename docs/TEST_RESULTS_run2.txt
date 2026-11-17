@@ -1,0 +1,255 @@
+
+== Migrations for all resources (real MariaDB)
+  ok   all migrations apply
+  ok   six resources with migrations (database, banking, inventory, admin, phone, vehicles)
+  ok   table exists: nexoro_transactions
+  ok   table exists: nexoro_inventories
+  ok   table exists: nexoro_inventory_items
+  ok   table exists: nexoro_bans
+  ok   table exists: nexoro_ban_identifiers
+  ok   table exists: nexoro_warnings
+  ok   table exists: nexoro_admin_logs
+  ok   migrations are idempotent
+
+== Banking
+  ok   account shows £250.00 cash and £1,500.00 bank
+  ok   deposit £100 moves cash to bank atomically (database)
+  ok   cache matches after deposit
+  ok   cannot deposit more cash than carried
+  ok   withdraw £50.50
+  ok   withdraw balances correct
+  ok   withdraw rejects -5
+  ok   withdraw rejects 0
+  ok   withdraw rejects -nan
+  ok   withdraw rejects inf
+  ok   withdraw rejects 10
+  ok   withdraw rejects 2.005
+  ok   transfer £200 to online player
+  ok   recipient bank is £1,700.00 (database)
+  ok   recipient cache refreshed
+  ok   money is conserved: no creation, no loss
+  ok   ledger has both sides of the transfer
+  ok   statement lists newest first with £ formatting
+  ok   transfer rejected: cannot_pay_yourself
+  ok   transfer rejected: recipient_not_found
+  ok   transfer rejected: invalid_recipient
+  ok   transfer rejected: insufficient_funds
+  ok   transfer rejected: invalid_amount
+  ok   money still conserved after rejected transfers
+  ok   transfer to an offline character works
+  ok   offline recipient credited £50
+  ok   civilian salary paid
+  ok   salary of £12.50 credited to bank
+  ok   police salary not paid while off duty
+  ok   police salary paid on duty
+
+== Inventory
+  ok   add 3 water
+  ok   stored in slot 1
+  ok   add 100 sandwiches (stack cap)
+  ok   weight limit stops adding more (32.5 kg > 30 kg)
+  ok   inventory unchanged after rejected add
+  ok   non-stackable items get their own slots
+  ok   two phone slots
+  ok   AddItem rejects amount 0
+  ok   AddItem rejects amount -1
+  ok   AddItem rejects amount -nan
+  ok   AddItem rejects amount x
+  ok   AddItem rejects amount 1000000000.0
+  ok   unknown item rejected
+  ok   repeat adds stack together
+  ok   stacked into a single slot
+  ok   cannot remove more than owned
+  ok   remove 4 water
+  ok   6 water left
+  ok   move to empty slot
+  ok   item now in slot 20
+  ok   swap different items
+  ok   cannot split-swap onto a different item
+  ok   water present
+  ok   invalid destination slot rejected
+  ok   moving an empty slot rejected
+  ok   split 2 into new slot
+  ok   splitting never changes the total
+  ok   merge the split back
+  ok   inventory reloads identically from the database
+  ok   using a bandage works
+  ok   bandage triggered the heal effect
+  ok   bandage consumed
+  ok   items without a use handler cannot be used
+  ok   a handler returning false cancels and keeps the item
+  ok   failed database write changes nothing in memory
+  ok   and nothing in the database
+  ok   callback returns 40 slots and 30 kg limit
+  ok   callback rejects malformed slots
+  ok   Core.AddItem forwards to nexoro_inventory
+  ok   Core.AddItem reports inventory_unavailable when stopped
+  ok   stash accepts items
+  ok   stash weight limit (5 kg) enforced
+  ok   stash API cannot touch character inventories
+  ok   deleting a character deletes their inventory (cascade)
+
+== Chat
+  ok   local message shows [CITIZEN] prefix
+  ok   local chat is not delivered to players 500 m away
+  ok   sender sees their own message
+  ok   typed [POLICE] cannot change the server-assigned prefix
+  ok   police off duty still shows CITIZEN
+  ok   police on duty shows [POLICE]
+  ok   job name rule: [MECHANIC]
+  ok   global reaches everyone
+  ok   non-staff cannot use staff chat
+  ok   staff chat only reaches staff
+  ok   civilians cannot use the emergency channel
+  ok   emergency channel only reaches on-duty emergency services
+  ok   department chat works for players with a job
+  ok   no department chat when unemployed
+  ok   private messages reach only sender and recipient
+  ok   pm to missing player fails
+  ok   unknown channel rejected
+  ok   empty message rejected
+  ok   long messages truncated to 240
+  ok   profanity filtered
+  ok   control characters stripped
+  ok   rapid or duplicate messages blocked
+  ok   spamming gets the player auto-muted
+  ok   muted state reported
+  ok   unmute restores chat
+  ok   secure net event path does not error
+  ok   chat history replayed to joining players (3 messages)
+
+== Admin menu: access and hierarchy
+  ok   owner menu exposes every action (48)
+  ok   moderator menu hides economy actions
+  ok   normal players cannot open the menu
+  ok   moderator cannot add money
+  ok   moderator cannot change jobs
+  ok   moderator cannot give items
+  ok   moderator cannot restart resources
+  ok   moderator cannot manage staff
+  ok   plain moderator cannot ban
+  ok   plain moderator cannot temp-ban
+  ok   unknown sources have no access
+  ok   normal player cannot kick
+  ok   kick requires a reason
+  ok   moderator cannot kick the owner
+  ok   cannot kick yourself
+  ok   moderator cannot freeze a senior administrator
+  ok   moderator can kick a normal player
+  ok   kick drops the right player
+  ok   garbage target rejected
+  ok   negative target rejected
+  ok   unknown action rejected
+  ok   non-table payload rejected safely
+
+== Admin menu: warnings, bans and the connect hook
+  ok   moderator can warn
+  ok   warning stored
+  ok   tempban needs confirmation
+  ok   senior moderator can temp-ban
+  ok   senior moderator cannot ban head admin
+  ok   moderator ban duration capped at 7 days
+  ok   banned licence is refused at connect with the reason
+  ok   unrelated players can still join
+  ok   expired temporary bans no longer block
+  ok   permanent ban blocks
+  ok   unban needs confirmation
+  ok   senior admin can lift a ban
+  ok   lifted ban allows joining again
+  ok   cannot lift the same ban twice
+  ok   admin can permanently ban
+
+== Admin menu: economy, jobs, items, with audit trail
+  ok   owner can add money
+  ok   balance increased by £250.50
+  ok   audit log keeps previous value, new value and reason
+  ok   audit log records staff and target identifiers
+  ok   money actions need confirmation
+  ok   money actions need a reason
+  ok   negative amounts rejected
+  ok   unknown account rejected
+  ok   cannot remove more than they have
+  ok   staff cannot give themselves money
+  ok   owner can set a job
+  ok   unknown job rejected
+  ok   unknown grade rejected
+  ok   owner can give items
+  ok   items arrived
+  ok   owner can remove items
+  ok   clear inventory needs confirmation
+  ok   owner can clear an inventory
+  ok   inventory is empty
+
+== Admin menu: teleport, vehicles, world, server
+  ok   goto works
+  ok   staff moved to the target
+  ok   return works
+  ok   staff returned to previous position
+  ok   bring works
+  ok   target brought to staff
+  ok   brought player can be returned
+  ok   teleport to coordinates
+  ok   bad coordinates rejected
+  ok   moderator cannot freeze a senior moderator
+  ok   senior moderator can freeze a normal player
+  ok   freeze effect sent to the target client
+  ok   spawn vehicle for self
+  ok   invalid vehicle models rejected
+  ok   repair, clean and flip default to self
+  ok   moderators cannot spawn vehicles
+  ok   self toggles work
+  ok   noclip toggles off on second use
+  ok   moderators cannot noclip
+  ok   weather change
+  ok   invalid weather rejected
+  ok   time change
+  ok   invalid time rejected
+  ok   announcement works
+  ok   too-short announcement rejected
+  ok   owner can restart a nexoro resource
+  ok   stop then start
+  ok   restart blocked: "nexoro_database"
+  ok   restart blocked: "qb-core"
+  ok   restart blocked: "nexoro_x;rm"
+  ok   restart blocked: "../nexoro_core"
+  ok   restart blocked: ""
+  ok   maintenance needs confirmation
+  ok   maintenance on
+  ok   maintenance blocks normal players
+  ok   maintenance lets staff in
+
+== Admin menu: staff ranks
+  ok   head admin cannot assign owner
+  ok   cannot assign a rank equal to your own
+  ok   head admin lacks staff-management permission by default
+  ok   unknown rank rejected
+  ok   owner can promote
+  ok   rank applied
+  ok   owner can remove staff
+
+== Admin menu: staff duty
+  ok   actions need staff duty when configured
+  ok   clock on
+  ok   actions allowed on duty
+
+== Admin menu: data views
+  ok   dashboard returns counts and resource states
+  ok   moderator has no dashboard
+  ok   moderators can list players
+  ok   player details include character and money in £
+  ok   player details never include IP addresses
+  ok   normal players cannot list players
+  ok   admin logs viewable
+  ok   moderators cannot read logs without permission
+  ok   log category filter is parameterised (injection attempt returns safely)
+  ok   economy overview with £ totals
+  ok   moderators cannot see the economy tab
+  ok   active bans list
+
+== Cross-cutting checks
+  ok   admin actions mirrored into the core audit log
+  ok   denied attempts are logged
+  ok   hierarchy violations are logged
+  ok   no negative balances anywhere
+
+229 passed, 0 failed

@@ -1,0 +1,19 @@
+
+== Migrations
+  ok   migrations apply
+
+== Firearms licence
+  ok   the firearms licence costs £500.00
+  ok   the licence is bought at the council office
+  ok   Cara buys a firearms licence
+  ok   the fee is taken from the bank
+  ok   the firearms licence is recorded
+  ok   one firearms licence is enough
+  ok   the licence summary shows the firearms licence only
+  ok   an unknown licence kind is refused
+  ok   the firearms licence cannot be bought around its record check
+  ok   Olly has an arrest on record
+  ok   someone with an arrest on record cannot buy a firearms licence
+  ok   and no licence is issued
+
+13 passed, 0 failed

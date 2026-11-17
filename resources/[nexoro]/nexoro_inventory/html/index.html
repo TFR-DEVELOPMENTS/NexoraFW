@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en-GB">
+<head><meta charset="utf-8"><title>Nexoro Inventory</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<main id="inv" class="hidden">
+  <header>
+    <span class="logo">INVENTORY</span>
+    <span id="weight" class="muted"></span>
+  </header>
+  <div class="bar"><div id="bar-fill"></div></div>
+  <input id="search" type="text" placeholder="Search items" autocomplete="off">
+  <div id="grid"></div>
+  <p class="muted hint">Drag to move or stack. Hold Shift while dropping to move one. Right-click or double-click to use. Esc closes.</p>
+  <p id="msg" class="hidden"></p>
+</main>
+<div id="tip" class="hidden"></div>
+<script src="app.js"></script>
+</body>
+</html>

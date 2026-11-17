@@ -1,0 +1,50 @@
+
+== Migrations
+  ok   migrations apply
+  ok   crew tables exist
+
+== Crews: forming
+  ok   crew names need three letters or more
+  ok   Sam creates the crew Harbour Lads
+  ok   you can only be in one crew
+  ok   crew names are not reused
+  ok   only crew members can invite
+  ok   Sam is already in a crew
+  ok   Sam invites Cara
+  ok   Cara accepts
+  ok   Cara joins: she and Sam are in the same crew
+  ok   an invite to someone already in a crew is refused
+  ok   nothing left to accept
+
+== Crews: membership rules
+  ok   Sam invites Olly
+  ok   an invite expires after 60 seconds
+  ok   Olly accepts a fresh invite
+  ok   Olly is in the crew
+  ok   the crew has three members
+  ok   Cara leaves
+  ok   Cara is no longer in the crew
+  ok   the leader cannot leave, only disband
+  ok   an ordinary member cannot kick
+  ok   Sam removes Olly
+  ok   the leader cannot kick themselves
+  ok   Sam disbands the crew
+  ok   nobody is in a crew after disbanding
+
+== Hunting licence
+  ok   Olly buys a hunting licence
+  ok   the hunting licence costs £40.00
+  ok   the hunting licence is recorded
+  ok   one hunting licence is enough
+
+== Hunting
+  ok   no licence, no hunting
+  ok   you must be in the woods
+  ok   unknown spots are refused
+  ok   the first roll is venison
+  ok   the venison is in the inventory
+  ok   a rest is needed between hunts
+  ok   the top of the table is a empty hunt: nothing caught, still a valid try
+  ok   and nothing was added
+
+38 passed, 0 failed

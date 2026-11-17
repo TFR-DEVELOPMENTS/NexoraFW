@@ -1,0 +1,169 @@
+
+== Migrations: dispatch tables
+  ok   eleven migration files apply (vehicles skipped)
+  ok   table exists: nexoro_dispatch_incidents
+  ok   table exists: nexoro_dispatch_assignments
+
+== 999, 101 and 111 calls
+  ok   999 creates an immediate emergency incident
+  ok   the incident is placed at the caller position from the server
+  ok   new incident is open
+  ok   incident describes the call
+  ok   every on-duty service is alerted to a 999 call
+  ok   dispatchers are alerted to every call
+  ok   off-duty officers and civilians are not alerted
+  ok   101 creates a police incident
+  ok   111 creates a routine medical incident
+  ok   numbers that are not emergency numbers are ignored
+  ok   the OnCall export works
+
+== Operator tools and permissions
+  ok   units can view open incidents
+  ok   civilians cannot view incidents
+  ok   constables cannot raise incidents
+  ok   incident kinds are fixed
+  ok   priority is 1 to 3
+  ok   a sergeant raises a fire incident
+  ok   manual incidents record the dispatcher
+  ok   bad priorities refused
+  ok   priority raised to immediate
+  ok   priority stored
+  ok   description updated
+  ok   descriptions cannot be empty
+  ok   units cannot change priority
+  ok   unknown incidents are refused
+
+== Assigning units
+  ok   Sam is assigned to the 999 call
+  ok   the assigned officer receives a waypoint to the incident
+  ok   incident moves to assigned
+  ok   a busy unit cannot be double-assigned
+  ok   the ambulance is also assigned to the 999 call
+  ok   civilians cannot be assigned
+  ok   an ambulance cannot be sent to a police call
+  ok   an inspector is sent to the 101 call
+  ok   and is then busy
+  ok   a police officer cannot be sent to a fire
+  ok   a firefighter is assigned to the fire
+  ok   units cannot assign units
+  ok   Sam shows en route
+  ok   the ambulance shows en route
+  ok   off-duty Lou is not listed as a unit
+
+== Unit status
+  ok   cannot skip from en route to transporting
+  ok   Sam is on scene
+  ok   Sam clears back to available
+  ok   the assignment is released when the unit clears
+  ok   the ambulance is on scene
+  ok   the ambulance is transporting a patient
+  ok   transport completed, back on scene
+  ok   unknown statuses are refused
+  ok   an assigned unit must clear to available before going unavailable
+  ok   the firefighter is on scene
+  ok   the firefighter clears to available
+  ok   the firefighter goes unavailable
+  ok   unavailable units must go available first
+  ok   back to available
+  ok   civilians cannot set unit status
+
+== Releasing, closing and history
+  ok   cannot release a unit not on that incident
+  ok   release the inspector from the 101 call
+  ok   released unit is available again
+  ok   incident history lists every unit that attended (2)
+  ok   history for unknown incidents is refused
+  ok   open incidents list the units still attached
+  ok   close the 999 call with an outcome
+  ok   outcome is recorded on the incident
+  ok   units list still works after close
+  ok   closing an incident frees its units
+  ok   closed incidents cannot be closed again
+  ok   closed incidents cannot be assigned
+  ok   closed incidents leave the open list
+
+== Radio channels
+  ok   public channels need a radio
+  ok   a civilian with a radio joins public channel 5
+  ok   channel is recorded for the player
+  ok   civilian leaves the radio
+  ok   leaving twice is refused
+  ok   civilians cannot join police channels
+  ok   Sam joins the police channel
+  ok   paramedics cannot join the police channel
+  ok   paramedics join the ambulance channel
+  ok   the dispatch channel is for dispatchers
+  ok   dispatchers join channel 900
+  ok   unknown channels are refused
+  ok   non-numeric channels are refused
+  ok   off-duty officers cannot use the police channel
+  ok   metadata access still fine
+
+== Department tablet
+  ok   no tablet, no apps
+  ok   a constable sees the MDT and their status app
+  ok   a constable does not see dispatch, patient or fire apps
+  ok   a sergeant on duty sees dispatch and MDT
+  ok   a paramedic sees patient records but not the MDT
+  ok   a firefighter sees incidents and hazards
+  ok   civilians have no tablet apps
+  ok   relay runs an allowed call for an allowed app
+  ok   constables cannot use the dispatch app
+  ok   calls outside the app are refused
+  ok   unknown apps are refused
+  ok   relay needs a tablet too
+  ok   the tablet can raise incidents for dispatchers
+  ok   the dispatch list comes through the tablet
+  ok   firefighters place hazards through the tablet
+  ok   a sergeant cannot use the fire incident app
+  ok   using the tablet item opens it on the client
+
+== Emergency lighting
+  ok   civilians cannot switch on lightbars
+  ok   unknown presets are refused
+  ok   only emergency models can get lightbars
+  ok   missing vehicles are refused
+  ok   invalid vehicle ids are refused
+  ok   Sam switches on the patrol pattern
+  ok   everyone nearby receives the lightbar state
+  ok   another unit cannot take over the lightbar
+  ok   the ambulance switches on its own lights
+  ok   the siren is switched on and synced
+  ok   only the setter controls the siren
+  ok   no lights, no siren
+  ok   the ambulance switches its lights off
+  ok   switching off twice is refused
+  ok   one lightbar remains
+  ok   Sam switches his lights off
+  ok   Sam switches on the response pattern again
+  ok   Sam clocks off
+  ok   going off duty clears your lightbars
+  ok   Sam clocks back on
+  ok   Sam switches the patrol pattern back on
+  ok   a player who joins is sent the current lightbars
+  ok   sweep available
+  ok   lightbars on vanished vehicles are removed
+  ok   lightbars set by a player who leaves are cleared
+
+== Config sanity
+  ok   every preset step has a valid side and colour
+  ok   12 departments and the 999 number are configured
+
+== Map: unit positions and closed incidents
+  ok   Sam rejoins for the map tests
+  ok   Sam clocks back on
+  ok   the unit list includes everyone on duty in an emergency service
+  ok   off-duty officers and civilians are not in the unit list
+  ok   unit list carries the callsign
+  ok   the map tick finds positions for units (5)
+  ok   each unit receives the positions of the other units
+  ok   civilians never receive unit positions
+  ok   positions come from the server for each unit
+  ok   close the 111 call
+  ok   closing an incident tells every client so the map can clear it (8 clients)
+
+== Integrity
+  ok   assignment statuses stay valid
+  ok   incident positions are stored
+
+143 passed, 0 failed

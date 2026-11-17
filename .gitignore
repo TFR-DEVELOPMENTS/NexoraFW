@@ -1,0 +1,22 @@
+# Built packages and local output
+*.zip
+tmp/
+dist/
+
+# Local database files and secrets (never commit these)
+*.sql.bak
+server.cfg
+*.env
+.env*
+keymaster*
+license*.txt
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Test output is regenerated on each run
+/tmp/

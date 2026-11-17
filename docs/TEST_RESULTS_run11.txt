@@ -1,0 +1,86 @@
+
+== Migrations
+  ok   migrations apply
+  ok   table exists: nexoro_licences
+  ok   table exists: nexoro_businesses
+  ok   table exists: nexoro_business_staff
+
+== Driving licence
+  ok   the test is taken at the council office
+  ok   the written test has five questions
+  ok   answers are not sent to the player
+  ok   the test fee of £60.00 is taken
+  ok   all wrong answers fail the test
+  ok   a finished test cannot be re-marked
+  ok   correct answers pass
+  ok   the driving licence is recorded
+  ok   the licence card is issued
+  ok   you cannot sit the test again once licensed
+
+== Fishing licence
+  ok   Olly buys a fishing licence
+  ok   the fishing licence costs £25.00
+  ok   only one fishing licence is needed
+  ok   Olly holds a fishing licence only
+
+== Fishing
+  ok   no licence, no fishing
+  ok   you must be at the spot
+  ok   unknown spots are refused
+  ok   a cast at the pier lands a fresh fish
+  ok   the fish is in the inventory
+  ok   the line needs a rest before the next cast
+  ok   the roll decides the catch: the top of the table is scrap
+  ok   junk goes in the inventory too
+
+== Businesses: registration and accounts
+  ok   create path reached
+  ok   names need three letters or more
+  ok   Cara registers Corner Cafe
+  ok   registration costs £2,500.00
+  ok   a second business is allowed
+  ok   two businesses per owner
+  ok   Cara puts £500 in the business account
+  ok   Cara takes £100 back out
+  ok   a business cannot overdraw
+  ok   only the owner can use the account
+  ok   deposits must be positive
+
+== Businesses: staff and wages
+  ok   wages must be positive
+  ok   wages are capped
+  ok   owners cannot hire themselves
+  ok   Olly is hired at £12 an hour
+  ok   nobody is hired twice
+  ok   the hourly wage is paid
+  ok   Olly receives £12.00
+  ok   the wage comes out of the business account
+  ok   nothing is paid again within the hour
+  ok   an empty account pays nobody
+  ok   Olly sees where he works
+  ok   Cara refills the account
+  ok   Cara dismisses Olly
+  ok   dismissed staff cannot be dismissed again
+  ok   Olly quits
+  ok   quitting twice is refused
+  ok   Cara owns two businesses
+
+== Postal rounds
+  ok   a round needs the postal job and duty
+  ok   Pat clocks on as a postal worker
+  ok   other jobs cannot use the postal duty
+  ok   a round of three drops starts
+  ok   one round at a time
+  ok   deliveries need you at the door
+  ok   the first drop pays £35.00
+  ok   drops cannot be cleared too quickly
+  ok   after a pause the second drop counts
+  ok   the round completes on the last drop
+  ok   the last drop pays £35 plus the £60 completion bonus
+  ok   a finished round cannot be delivered again
+  ok   going off duty ends the round
+  ok   back on duty
+  ok   a round can be stopped early
+  ok   nothing to stop
+
+70 passed, 0 failed

@@ -1,0 +1,211 @@
+
+== Migrations including nexoro_vehicles
+  ok   six resources with migrations apply
+  ok   table exists: nexoro_vehicles
+  ok   table exists: nexoro_vehicle_keys
+  ok   table exists: nexoro_vehicle_history
+
+== UK number plates
+  ok   generated plates look like AB12 CDE
+  ok   plates never contain I, Q or Z
+  ok   normalises case and spaces
+  ok   normalises a plate without the space
+  ok   rejects plate: 
+  ok   rejects plate: ABCD EFG
+  ok   rejects plate: 12AB CDE
+  ok   rejects plate: AB12 CD'; DROP
+  ok   rejects plate: AB12 CDEF
+  ok   rejects plate: 42
+
+== Dealership purchases
+  ok   catalogue shows £ prices
+  ok   cannot browse from across the map
+  ok   models outside the catalogue cannot be bought
+  ok   unknown payment method rejected
+  ok   purchase by bank registers a plate
+  ok   charged exactly £6,500.00 (a client-supplied price is ignored)
+  ok   new vehicle is waiting in the garage
+  ok   delivered to the dealership garage
+  ok   cannot buy a £52,000 car with £250 cash
+  ok   cash untouched after failed purchase
+  ok   no vehicle registered for the failed purchase
+  ok   models are checked against that dealership's catalogue
+
+== Garages: retrieve and store
+  ok   garage lists my stored vehicle
+  ok   players far away cannot list the garage
+  ok   other players do not see my vehicle
+  ok   cannot retrieve someone else's vehicle
+  ok   wrong garage
+  ok   invalid spawn bay rejected
+  ok   retrieve returns vehicle data and a server-chosen spawn point
+  ok   vehicle is now out
+  ok   cannot spawn the same vehicle twice (no duplication)
+  ok   direct double-spawn is also refused
+  ok   client confirms the spawn
+  ok   someone else cannot confirm my spawn
+
+== Vehicle state: server-side sanity checks
+  ok   owner can report state
+  ok   fuel burn recorded
+  ok   client cannot raise fuel or repair damage by reporting higher values
+  ok   mileage cannot jump (6000 m)
+  ok   NaN and junk values are ignored or clamped
+  ok   players without a key cannot report state
+  ok   oversized props are ignored
+  ok   server-side repair restores health
+
+== Keys and access
+  ok   owner has access
+  ok   strangers have no access
+  ok   non-owners cannot hand out keys
+  ok   owner gives Cara a key
+  ok   key holder has access
+  ok   key holders can report state while driving
+  ok   shared vehicles appear in the key holder's list
+  ok   cannot give yourself a key
+  ok   shared key limit enforced
+  ok   owner can list who has keys
+  ok   revoked keys stop working
+
+== Fuel
+  ok   must be at a pump
+  ok   refuel rejects litres -5
+  ok   refuel rejects litres 0
+  ok   refuel rejects litres -nan
+  ok   refuel rejects litres abc
+  ok   refuel 10 litres
+  ok   10 litres cost exactly £14.50
+  ok   tank level rises by the litres bought
+  ok   filling is capped at a full tank
+  ok   cannot buy fuel for a full tank
+  ok   strangers cannot refuel my vehicle
+
+== Insurance, MOT and wrecks
+  ok   buy 7-day insurance
+  ok   2% of £6,500 = £130.00
+  ok   unknown plans rejected
+  ok   only the owner can insure
+  ok   a second policy extends from the current expiry
+  ok   MOT needs a station
+  ok   MOT test runs at a station
+  ok   healthy vehicle passes
+  ok   MOT fee is exactly £54.85
+  ok   MOT expiry stored
+  ok   damaged engine fails the MOT with a reason
+  ok   a healthy vehicle cannot be reported as wrecked
+  ok   a destroyed vehicle (engine 0) is accepted
+  ok   status is wrecked
+  ok   the wreck entity is removed
+  ok   uninsured wrecks cannot be claimed
+  ok   insured wreck can be claimed
+  ok   excess is 10% of £8,500
+  ok   restored to the default garage in poor condition
+  ok   only wrecked vehicles can be scrapped
+
+== Storing a vehicle
+  ok   cannot store from across the map
+  ok   strangers cannot store my vehicle
+  ok   cannot store at an impound lot
+  ok   store at a public garage
+  ok   stored with its state and modifications saved
+  ok   stored vehicle entity removed
+  ok   cannot store a vehicle that is not out
+
+== Selling to another player
+  ok   offer a stored vehicle
+  ok   buyer receives the offer with the price
+  ok   only the named buyer can respond
+  ok   buyer accepts
+  ok   ownership moved to the buyer
+  ok   buyer paid £1,000.00
+  ok   seller received £1,000.00
+  ok   an offer can only be used once
+  ok   previous owner can no longer sell it
+  ok   buyer must be next to the seller
+  ok   bad prices rejected
+  ok   offers expire after 60 s
+  ok   if the vehicle is taken out after the offer, the sale fails
+  ok   and the buyer is not charged
+  ok   ownership unchanged
+
+== Finance
+  ok   £24,000 car: £2,400 deposit, £23,328.00 with 8% interest, 8 payments of £2,916.00
+  ok   deposit under 10% rejected
+  ok   deposit above the price rejected
+  ok   finance purchase
+  ok   only the deposit is charged up front
+  ok   finance balance recorded
+  ok   cannot sell a financed vehicle
+  ok   cannot sell a financed vehicle to the dealer
+  ok   nothing is taken before the due date
+  ok   one payment processed when due
+  ok   £2,916.00 taken from the bank
+  ok   balance reduced
+  ok   first missed payment counted
+  ok   still not repossessed after two
+  ok   repossessed after three missed payments
+  ok   repossessed vehicles still listed safely
+  ok   repossessed vehicles cannot be retrieved
+  ok   paying off the arrears works
+  ok   vehicle returned and finance cleared
+  ok   offline owners are skipped
+  ok   second finance purchase succeeded
+  ok   and not penalised
+  ok   Ben rejoins
+
+== Dealer buyback
+  ok   buyback is 50% of the purchase price for a zero-mileage vehicle
+  ok   sold for £4,250.00
+  ok   vehicle marked sold
+  ok   cannot sell it twice
+  ok   must be at the dealership to sell
+  ok   buyback pricing available
+  ok   buyback export works
+
+== Impound
+  ok   normal players cannot impound
+  ok   police off duty cannot impound
+  ok   police on duty can impound
+  ok   status, fee and reason recorded
+  ok   owner sees it at the impound lot with the fee
+  ok   someone else cannot release it
+  ok   release only works at an impound lot
+  ok   owner pays £150.00 and releases it
+  ok   vehicle waits at the lot garage
+  ok   and can be driven away
+  ok   cannot release twice
+
+== Abandoned vehicles and restarts
+  ok   recently retrieved vehicles are left alone
+  ok   a vehicle that never appeared returns to its garage
+  ok   existing vehicles are left alone
+  ok   a vanished vehicle gets a grace period
+  ok   abandoned vehicles are impounded with a £150 fee
+  ok   server restart returns "out" vehicles to their garages
+
+== Admin registry tools
+  ok   plate lookup shows the registered keeper
+  ok   registry search by owner or plate
+  ok   search is safe against injection
+  ok   moderators cannot transfer vehicles
+  ok   invalid citizen IDs rejected
+  ok   transfer needs confirmation
+  ok   owner can transfer a vehicle
+  ok   ownership changed
+  ok   audit log records previous owner, new owner and reason
+  ok   repair and impound
+  ok   staff release without a fee
+  ok   delete needs confirmation
+  ok   staff can scrap a vehicle
+  ok   registry endpoint returns results
+  ok   moderators have no registry access
+  ok   vehicle history keeps the life of the vehicle (7 events)
+  ok   strangers cannot read someone else's vehicle history
+
+== Integrity
+  ok   every plate is unique
+  ok   no negative balances
+  ok   deleting a character removes their keys
+
+177 passed, 0 failed

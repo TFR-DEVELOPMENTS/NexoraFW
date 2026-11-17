@@ -1,0 +1,50 @@
+
+== Migrations
+  ok   migrations apply
+  ok   pitch tables exist
+
+== Claiming a pitch
+  ok   a pitch is claimed on the spot
+  ok   Cara claims the Sandy Shores pitch
+  ok   the claim fee is £250.00
+  ok   one pitch per person
+  ok   a claimed pitch cannot be claimed again
+  ok   unknown pitches are refused
+
+== Notices and warrants
+  ok   only police serve notices
+  ok   a notice needs someone living there
+  ok   Pat serves a notice with a 14 day deadline
+  ok   no warrant before the deadline
+  ok   a constable cannot issue a warrant
+  ok   warrants need a real reason
+  ok   after the deadline a sergeant issues a warrant
+  ok   the warrant is live
+
+== Gates
+  ok   the occupant opens their gate
+  ok   someone else cannot open the gate
+  ok   police with a warrant close the gate
+  ok   an officer on duty can act under the warrant
+  ok   the gate must be reached on foot
+  ok   the warrant expires after 24 hours
+  ok   the occupant still controls their own gate
+
+== Leaving the pitch
+  ok   Cara vacates the pitch
+  ok   nothing left to vacate
+  ok   the pitch can be claimed by someone new
+
+== Scrap collector
+  ok   you need to be on shift
+  ok   Olly starts his shift as a collector
+  ok   unknown points are refused
+  ok   you collect at the point
+  ok   a load of scrap is collected
+  ok   the scrap is in the inventory
+  ok   a point rests between loads
+  ok   after ten minutes the point is ready again
+  ok   Olly finishes his shift
+  ok   nothing collected off shift
+
+36 passed, 0 failed

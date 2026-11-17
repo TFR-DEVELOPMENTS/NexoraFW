@@ -1,0 +1,51 @@
+
+== UK clock: GMT and BST
+  ok   July is British Summer Time
+  ok   January is GMT
+  ok   in July the UK clock reads 13:00 when UTC is 12:00
+  ok   in January the UK clock reads 12:00 when UTC is 12:00
+  ok   BST starts at 01:00 UTC on the last Sunday of March (29 March 2026)
+  ok   just before the March change it is still GMT
+  ok   BST ends at 01:00 UTC on the last Sunday of October (25 October 2026)
+  ok   after the October change it is GMT
+  ok   the hour after the October change reads 01:30 GMT
+
+== Weather cycle
+  ok   unknown weather is refused
+  ok   set clear weather
+  ok   from clear the next weather is a neighbour (clouds)
+  ok   from clouds the first neighbour is clear
+  ok   clouds can also break up into clearing skies
+  ok   clouds can clear directly
+  ok   overcast can turn to fog
+  ok   overcast can thin back to clouds
+  ok   overcast can roll into fog (last option)
+  ok   rain can ease back to overcast
+  ok   rain can clear up (last option)
+  ok   every transition leads to a weather with its own rules
+  ok   clear skies never jump straight to thunder
+  ok   rain can build to thunder
+  ok   rain makes roads wet; clear does not
+
+== Admin control and clock
+  ok   impossible times are refused
+  ok   a manual time is accepted
+  ok   manual hour applied
+  ok   setting the time by hand turns real time off
+  ok   real time can be turned back on
+  ok   the clock can be frozen and unfrozen
+  ok   the game clock rolls past midnight
+  ok   and resets its minutes
+  ok   a frozen clock does not move
+  ok   real time follows UK time on each tick
+  ok   real time minute is correct
+
+== Broadcasts
+  ok   every tick sends the world state to everyone
+  ok   an admin weather change is sent to everyone at once
+  ok   a player who joins is sent the current weather and time
+
+== Traffic and density
+  ok   traffic densities are between 0 and 1
+
+39 passed, 0 failed

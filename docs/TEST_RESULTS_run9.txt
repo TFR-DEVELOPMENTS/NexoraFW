@@ -1,0 +1,54 @@
+
+== Migrations
+  ok   migrations apply
+
+== Owner: first join, convar and claim code
+  ok   the first account to join is owner
+  ok   the account named in nexoro_owner_license is owner even when another owner exists
+  ok   other accounts are not owners
+  ok   no claim code is shown while an owner exists
+  ok   with no owner, a six digit claim code is created
+  ok   a wrong code does not make you owner
+  ok   the right code makes you owner
+  ok   the claimant is now owner
+  ok   the code can only be used once
+  ok   the claimed owner has admin permissions
+  ok   on duty: 1
+  ok   on duty: 2
+  ok   on duty: 3
+
+== Radio chatter
+  ok   Sam tunes to the police channel
+  ok   Sue tunes to dispatch (she can operate)
+  ok   Pat tunes to the ambulance channel
+  ok   Cara tunes to public channel 5 with a radio
+  ok   Olly is not police, so cannot use the police channel
+  ok   public channels need a radio
+  ok   Sam sends a radio message
+  ok   Sam hears his own radio message
+  ok   Pat (ambulance) and Cara (public channel) do not hear police radio
+  ok   someone not tuned to any channel cannot transmit
+  ok   ambulance radio is heard only on the ambulance channel
+  ok   dispatch messages are labelled DISPATCH on the channel
+  ok   dispatch on one channel does not reach other channels
+  ok   Sue raises an incident
+  ok   Sue assigns Sam
+  ok   assignment is called out over the police radio
+  ok   the ambulance channel does not hear police assignments
+
+== Car wash and dirt
+  ok   a vehicle is registered for Cara
+  ok   washing costs £15.00 at the car wash
+  ok   exactly £15.00 is taken from the bank
+  ok   a vehicle away from a wash cannot be washed
+  ok   only a vehicle that is out can be washed
+  ok   someone without a key cannot wash it
+  ok   no money, no wash
+  ok   dirt and puncture settings are sensible
+
+== Dealership radius
+  ok   the showroom opens within 4.5 metres
+  ok   eight metres away is too far to shop
+  ok   five metres away (edge of the forecourt) still works
+
+42 passed, 0 failed

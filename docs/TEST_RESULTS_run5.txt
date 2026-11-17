@@ -1,0 +1,252 @@
+
+== Migrations: police, ambulance and fire tables
+  ok   eleven migration files apply (vehicles skipped in this run)
+  ok   table exists: nexoro_police_records
+  ok   table exists: nexoro_police_evidence
+  ok   table exists: nexoro_medical_records
+  ok   table exists: nexoro_fire_incidents
+
+== Departments and job definitions
+  ok   twelve departments are defined
+  ok   police jobs are whitelisted (not in the job centre)
+  ok   police department has nine ranks
+  ok   highways patrol has three ranks
+  ok   ambulance has five ranks
+  ok   fire has five ranks
+  ok   grade 0 is Police Constable
+  ok   top grade is Chief Constable
+  ok   police category matches public chat tagging
+  ok   fire category
+  ok   constables can cuff
+  ok   constables cannot breath test
+  ok   sergeants can breath test
+  ok   sergeants cannot manage staff
+  ok   inspectors can manage staff
+  ok   fire has its own permissions only
+  ok   ambulance has its own permissions only
+  ok   unknown job has no permissions
+
+== Duty
+  ok   constable goes on duty
+  ok   duty is reflected in the core job state
+  ok   civilians cannot clock on
+  ok   paramedic goes on duty with medical.duty
+  ok   on-duty constable has police.cuff
+  ok   constable has no medical permissions
+  ok   paramedic has no police permissions
+  ok   firefighter has no medical permissions
+  ok   off duty loses operational permissions
+  ok   off-duty officers keep the duty permission to clock on
+  ok   sergeant and inspector are on duty
+  ok   sergeant can breath test; constable cannot
+
+== Callsigns
+  ok   Sam takes callsign CP-12
+  ok   same callsign in the same department is refused
+  ok   Lou takes CP-13
+  ok   invalid callsign rejected: 0
+  ok   invalid callsign rejected: 100
+  ok   invalid callsign rejected: abc
+  ok   invalid callsign rejected: -4
+  ok   invalid callsign rejected: 2.5
+  ok   an ambulance crew can use the same number (different prefix)
+  ok   ambulance prefix is MA
+  ok   civilians cannot take a callsign
+
+== Roster
+  ok   roster loads for a member
+  ok   roster lists the four online caledonia officers
+  ok   highest rank is listed first
+  ok   rank label shown
+  ok   duty status shown
+  ok   roster excludes other departments
+  ok   civilians cannot read a roster
+
+== Management: hire, promote, demote, dismiss
+  ok   constables cannot hire
+  ok   sergeants cannot promote
+  ok   managers cannot hire themselves
+  ok   inspector hires Cara
+  ok   Cara is now a caledonia officer
+  ok   hired at the bottom rank
+  ok   cannot hire someone who already serves
+  ok   cannot poach a paramedic (fire them first, in their own service)
+  ok   unknown players cannot be hired
+  ok   promote Cara to sergeant
+  ok   Cara is grade 1
+  ok   cannot promote someone to your own rank
+  ok   promote Lou to sergeant
+  ok   demote Lou back
+  ok   a rank change takes the officer off duty (they must clock on again)
+  ok   promotion step must be 1 or -1
+  ok   cannot demote below constable
+  ok   cannot promote someone from another department
+  ok   sergeants cannot demote
+  ok   sergeants cannot demote (repeat)
+  ok   cannot demote yourself
+  ok   inspector dismisses Cara
+  ok   Cara is unemployed again
+  ok   cannot dismiss someone not in the department
+  ok   sergeants cannot dismiss
+  ok   constables cannot promote inspectors
+
+== Police: restraint and arrest
+  ok   civilians cannot cuff
+  ok   paramedics cannot cuff
+  ok   officers cannot cuff themselves
+  ok   suspects out of reach cannot be cuffed
+  ok   constable cuffs a suspect nearby
+  ok   the suspect is told they are cuffed
+  ok   cannot cuff twice
+  ok   uncuff
+  ok   arrest needs cuffs first
+  ok   re-cuff for arrest
+  ok   offence must be described
+  ok   sentence length is capped
+  ok   arrest is recorded
+  ok   arrest sentence held on the suspect
+  ok   record shows the officer name
+  ok   record shows the officer callsign
+  ok   record shows the offence
+  ok   release clears cuffs and detention
+  ok   detention cleared
+  ok   nothing to release
+
+== Police: penalties
+  ok   penalty notice paid from the bank
+  ok   exactly £100.00 taken
+  ok   fine must be positive
+  ok   fines are capped
+  ok   fines need a reason
+  ok   civilians cannot fine
+  ok   unpaid penalty is recorded as outstanding
+  ok   nothing taken when funds are short
+  ok   caution recorded
+  ok   caution needs a reason
+  ok   fines need the suspect in reach
+
+== Police: warrants and MDT
+  ok   constables cannot issue warrants
+  ok   unknown Citizen IDs are refused
+  ok   malformed Citizen IDs are refused
+  ok   sergeant issues a warrant for an offline-capable citizen ID
+  ok   MDT shows the open warrant
+  ok   MDT lists arrests, fines, cautions and warrants (5)
+  ok   every record kind is present
+  ok   wanted list shows the open warrant
+  ok   civilians cannot use the MDT
+  ok   plate checks report cleanly when vehicles are not installed
+  ok   sergeant clears the warrant
+  ok   a cleared warrant cannot be cleared again
+  ok   constables cannot clear warrants
+  ok   no open warrants after clearing
+
+== Police: search, seizure and breath tests
+  ok   search lists everything the suspect carries
+  ok   civilians cannot search
+  ok   cannot seize more than is carried
+  ok   item names are validated
+  ok   seizure returns an evidence reference
+  ok   the lockpicks left the suspect
+  ok   evidence bag holds the seized items
+  ok   evidence reference is logged
+  ok   seized items are gone from the suspect
+  ok   sober suspect passes the breath test
+  ok   over-limit reading fails
+  ok   failed breath tests are recorded
+  ok   constables cannot breath test
+
+== Ambulance: revive, bandage, assessment
+  ok   a living patient cannot be revived
+  ok   civilians cannot revive
+  ok   firefighters cannot revive
+  ok   paramedics cannot revive themselves
+  ok   revive needs the patient in reach
+  ok   paramedic revives the downed patient
+  ok   the patient receives the revive
+  ok   revive has a cooldown against double-revives
+  ok   cooldown ends after 60 seconds
+  ok   bandaging needs bandages in the responder inventory
+  ok   bandage is applied with the responder's own supply
+  ok   the patient is healed by 25
+  ok   the bandage was used up
+  ok   no bandage left, no treatment
+  ok   assessment is recorded
+  ok   assessments need notes
+  ok   civilians cannot write assessments
+
+== Ambulance: admission, discharge and records
+  ok   patients can only be admitted at a hospital
+  ok   unknown wards are refused
+  ok   police cannot admit patients
+  ok   admission succeeds
+  ok   ward is recorded on the patient
+  ok   NHS-style admission is not billed by default
+  ok   cannot admit twice
+  ok   with billing on, the admission fee is charged
+  ok   discharge
+  ok   patient no longer admitted
+  ok   cannot discharge someone not admitted
+  ok   medical records list the treatment history
+  ok   all medical record kinds are present
+  ok   police cannot read medical records
+
+== Fire: incidents
+  ok   firefighters off duty cannot raise incidents
+  ok   firefighter goes on duty
+  ok   civilians cannot raise incidents
+  ok   incident kinds are fixed
+  ok   fire incident raised at the firefighter's location
+  ok   new incident is open
+  ok   incident records who raised it
+  ok   incident position comes from the server, not the client
+  ok   crew attend the incident
+  ok   cannot attend twice
+  ok   unknown incidents are refused
+  ok   open incidents list shows the attended incident
+  ok   extinguishing needs the crew in range
+  ok   cannot extinguish a road traffic collision
+  ok   cannot extricate at a fire
+  ok   police cannot raise fire incidents
+
+== Fire: hazard zones
+  ok   hazard radius is limited
+  ok   hazard duration is limited
+  ok   civilians cannot place hazards
+  ok   hazard zone placed
+  ok   every online player is sent the updated hazard list (8)
+  ok   a second zone can be placed
+  ok   expired zones are removed automatically (the 5-minute one)
+  ok   the remaining zone expires after its time
+  ok   new zone placed at the fire
+  ok   a zone can be cleared early
+  ok   cleared zones are gone
+  ok   extinguishing the fire clears hazard zones at the scene
+  ok   fire is marked controlled
+  ok   hazard placement still works
+
+== Fire: extrication and closing incidents
+  ok   casualty extricated and counted on the incident
+  ok   extrication count goes up per casualty
+  ok   civilians cannot extricate
+  ok   closing needs an outcome
+  ok   incident closed with an outcome
+  ok   status is closed
+  ok   closing officer is recorded
+  ok   closed incidents cannot be closed again
+  ok   closed incidents cannot be worked
+  ok   closed incidents leave the open list
+
+== Off duty and cross-cutting checks
+  ok   an off-duty officer loses police powers immediately
+  ok   back on duty
+  ok   exports are registered
+
+== Cleanup and integrity
+  ok   core still available
+  ok   deleting a character removes their police records
+  ok   deleting a character removes their medical records
+  ok   evidence bags are kept for the record after a character is deleted
+  ok   no negative balances
+
+216 passed, 0 failed
